@@ -3,39 +3,16 @@
 @tailwind utilities;
 
 
-#petDescription {
-    margin-left: 12cm;
-    margin-top: 3cm;
-}
-
-
-.adList {
-    margin: 1cm;
-}
-
-
 body {
-    background-image: url('../images/cute-bg.png');
     min-height: 100vh;
     margin: 0;
-    /* position: relative; */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body::after {
     content: '';
     display: block;
     height: 50px;
-
-}
-
-
-ul li:hover ul.dropdown-menu {
-    display: block;
-    /* Display the dropdown */
-}
-
-.adList {
-    margin-bottom: 1cm;
 }
 
 footer {
@@ -50,80 +27,6 @@ footer {
     padding: 1em;
 }
 
-.custom-transparent-bg {
-    background-color: rgba(205, 194, 194, 0.059);
-}
-
-.contact {
-    background: #f9feff;
-}
-
-/* FORM STYLES */
-.contact form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-}
-
-.contact form label {
-    display: block;
-}
-
-.contact form p {
-    margin: 0;
-}
-
-.contact form .full {
-    grid-column: 1 / 3;
-}
-
-.contact form button,
-.contact form input,
-.contact form textarea {
-    width: 100%;
-    padding: 1em;
-    border: 1px solid #c9e6ff;
-}
-
-/* LARGE SCREENS */
-@media(min-width:700px) {
-    .wrapper {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-    }
-
-    .wrapper>* {
-        padding: 2em;
-    }
-
-    .company-info h3,
-    .company-info ul,
-    .brand {
-        text-align: left;
-    }
-}
-
-.hovertext:active {
-    content: attr(data-active);
-    visibility: hidden;
-    opacity: 0;
-    width: max-content;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px 5px;
-    transition: opacity 1s ease-in-out;
-  
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 110%;
-  }
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+.content {
+    white-space: pre;
 }

@@ -3,7 +3,7 @@ const postBlogFunction = async (event) => {
     event.preventDefault();
   
     const title = document.querySelector('#blog-title').value.trim();
-    const content = document.querySelector('#blog-content').value.trim();
+    const content = document.querySelector('#blog-content').value;
     
 
     if (title && content) {

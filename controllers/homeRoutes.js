@@ -36,13 +36,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-//add withauth
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard',withAuth, async (req, res) => {
   try {
     const dashboardData = await Blog.findAll({
       include: [
         { model: User }
       ],
+      order: [['date_created', 'DESC']],
       where: {
         user_id: req.session.user_id
       }
@@ -61,8 +61,7 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-//add withauth
-router.get('/blogs/:id', async (req, res) => {
+router.get('/blogs/:id',withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
       include: [
@@ -91,8 +90,6 @@ router.get('/blogs/:id', async (req, res) => {
       correctUser = true
     };
 
-  // res.json(comments)
-
     res.render('blogs', {
       blog,
       comments,
@@ -106,8 +103,7 @@ router.get('/blogs/:id', async (req, res) => {
   }
 });
 
-//add withauth
-router.get('/postblog', async (req, res) => {
+router.get('/postblog', withAuth, async (req, res) => {
   try {
     res.render('postblog', {
       logged_in: req.session.logged_in
@@ -117,7 +113,7 @@ router.get('/postblog', async (req, res) => {
   }
 });
 
-router.get('/updateblog/:id', async (req, res) => {
+router.get('/updateblog/:id', withAuth, async (req, res) => {
   try {
 
     const blogData = await Blog.findOne({

@@ -2,7 +2,7 @@ const updateBlogFunction = async (event) => {
     event.preventDefault();
   
     const title = document.querySelector('#blog-title').value.trim();
-    const content = document.querySelector('#blog-content').value.trim();
+    const content = document.querySelector('#blog-content').value;
     const blogId = document.querySelector('#blog-id').value;
 
     if (title && content) {
