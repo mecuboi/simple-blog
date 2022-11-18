@@ -2,8 +2,11 @@ const addNewComment = async (event) => {
     event.preventDefault();
 
     const body = document.querySelector('#new-comment').value.trim();
-    const urlSplit = window.location.pathname.split('/')
-    const blogId = urlSplit[2]
+    // const urlSplit = window.location.pathname.split('/')
+    // const blogId = urlSplit[2]
+    blogId = document.querySelector('#blog-post').value
+
+
 
     if (body) {
 

@@ -117,6 +117,30 @@ router.get('/postblog', async (req, res) => {
   }
 });
 
+router.get('/updateblog/:id', async (req, res) => {
+  try {
+
+    const blogData = await Blog.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+
+    if (!blogData) {
+      res.status(404).json({ message: "Blog post not found!" })
+    }
+
+    const blog = blogData.get({ plain: true });
+
+  res.render('updateBlog', {
+    blog,
+    logged_in: req.session.logged_in
+  })
+} catch(err) {
+  res.status(500).json(err);
+}
+});
+
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
