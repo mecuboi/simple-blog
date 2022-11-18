@@ -1,9 +1,9 @@
 
 {{#each blog as |blog|}}
-<div class="w-full bg-white border rounded-lg shadow-md md:mb-2">
+<div class=" bg-white border rounded-lg shadow-md md:mb-2 md:mx-2">
   <div class=" p-4 mb-2 bg-white rounded-lg md:p-8">
-    <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900">{{blog.title}}</h2>
-    <p class="mb-3 text-gray-700">{{blog.content}}</p>
+    <h2 class="mb-3 text-2xl font-extrabold tracking-tight text-gray-900">{{blog.title}}</h2>
+    <p class="mb-3 text-gray-700 text-md">{{blog.content}}</p>
     <p class="text-gray-400 text-sm float-right">{{blog.user.first_name}} - {{format_date blog.date_created}} {{format_time blog.date_created}}</p>
   </div> 
 </div>

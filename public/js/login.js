@@ -28,27 +28,26 @@ const signupFormHandler = async (event) => {
   const last_name = document.querySelector('#user-last-name').value.trim();
   const email = document.querySelector('#user-email-address').value.trim();
   const password = document.querySelector('#user-password').value.trim();
-  const address = document.querySelector('#user-address').value.trim();
-  const phone_number = document.querySelector('#user-phone-number').value.trim();
 
 
-
-  if (first_name && email && password && last_name && address && phone_number) {
+  if (first_name && email && password && last_name) {
 
 
     const response = await fetch('/api/users', {
       method: 'POST',
-      body: JSON.stringify({ first_name, last_name, email, phone_number, password, address }),
+      body: JSON.stringify({ first_name, last_name, email, password}),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/dashboard');
 
 
     } else {
       alert(response.statusText);
     }
+  } else {
+    alert("Please fill in all of the fields")
   }
 };
 
