@@ -29,6 +29,18 @@ npm start
 
 This website is very simple and intuitive. To start off, you would need to sign up so that you can access the content of the website. Once signed in, you can go to your homepage to see all the blogs in the website, or go to the dashboard page to start creating your own blog post. When you open a blog post, you are able to comment on that particular topic and interact with the people of internet.
 
+Homepage:
+
+![Alt text](/public/images/home.png )
+
+Once signed in, here is the dashboard page with your blogs:
+
+![Alt text](/public/images/dash.png)
+
+If you want to post a blog, click on the post a blog button on your dashboard:
+
+![Alt text](/public/images/post.png)
+
 Link to deployed app: https://simply-blog-bymattj.herokuapp.com/
 
 ## License
