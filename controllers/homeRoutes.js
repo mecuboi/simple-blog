@@ -50,7 +50,7 @@ router.get('/dashboard', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const dashboard = dashboardData.map((pets) => pets.get({ plain: true }));
+    const dashboard = dashboardData.map((data) => data.get({ plain: true }));
 
     res.render('dashboard', {
       dashboard,
