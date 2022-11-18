@@ -1,35 +1,33 @@
 const User = require('./User');
-const PetAds = require('./PetAds');
-const Category = require('./Category');
-const SavedPetsTag = require('./SavedPetsTag');
+const Blog = require('./Blog');
+const Comment = require('./Comment');
 
-User.hasMany(PetAds, {
-  foreignKey: 'seller_id',
+User.hasMany(Blog, {
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
-PetAds.belongsTo(User, {
-  foreignKey: 'seller_id'
+Blog.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
-Category.hasMany(PetAds, {
-  foreignKey: 'category_id'
+Blog.hasMany(Comment, {
+  foreignKey: 'blog_id'
 });
 
-PetAds.belongsTo(Category, {
-  foreignKey: 'category_id'
+Comment.belongsTo(Blog, {
+  foreignKey: 'blog_id'
 });
 
-User.belongsToMany(PetAds, {
-  foreignKey: 'user_tag_id',
-  through: SavedPetsTag
+User.hasMany(Comment, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
 });
 
-PetAds.belongsToMany(User, {
-  foreignKey: 'saved_pets_ads_id',
-  through: SavedPetsTag
+Comment.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
 
 
-module.exports = { User, PetAds, Category, SavedPetsTag };
+module.exports = { User, Blog, Comment};
