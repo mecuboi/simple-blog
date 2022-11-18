@@ -29,7 +29,7 @@ npm start
 
 This website is very simple and intuitive. To start off, you would need to sign up so that you can access the content of the website. Once signed in, you can go to your homepage to see all the blogs in the website, or go to the dashboard page to start creating your own blog post. When you open a blog post, you are able to comment on that particular topic and interact with the people of internet.
 
-Link to deployed app: 
+Link to deployed app: https://simply-blog-bymattj.herokuapp.com/
 
 ## License
 
@@ -38,7 +38,7 @@ Link to deployed app:
 
 ## Questions
 
-Reach out to me using the links below: https://simply-blog-bymattj.herokuapp.com/
+Reach out to me using the links below: 
 
 GitHub: [@mecuboi](https://github.com/mecuboi)
 
