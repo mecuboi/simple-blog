@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const commentData = await Comment.findByPk(req.params.id{
+    const commentData = await Comment.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -68,12 +68,9 @@ router.post('/', async (req, res) => {
       user_id: req.session.user_id
     });
 
-    const comment = commentData.map((data) =>
-      data.get({ plain: true })
-    );
-
-    res.status(200).json(comment)
+    res.status(200).json(commentData)
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
