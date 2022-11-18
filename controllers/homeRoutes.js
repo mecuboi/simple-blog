@@ -83,17 +83,22 @@ router.get('/blogs/:id',withAuth, async (req, res) => {
     const comments = commentData.map( data => data.get({ plain: true }));
 
     const blogUserId = blog.user_id;
+
+
     var correctUser = false;
+    var user = false; 
 
 
-    if (req.session.user_id == blogUserId) {
+    if (req.session.user_id === blogUserId) {
       correctUser = true
     };
+
 
     res.render('blogs', {
       blog,
       comments,
       correctUser,
+      user,
       logged_in: req.session.logged_in
     });
 

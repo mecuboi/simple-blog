@@ -26,7 +26,7 @@ const addNewComment = async (event) => {
     }
 };
 
-const deletePost = async (event) => {
+const deletePost = async () => {
 
     const blogId = document.querySelector('#delete-button').value
 
@@ -37,6 +37,25 @@ const deletePost = async (event) => {
 
     if (response.ok) {
         document.location.replace('/dashboard');
+
+
+    } else {
+        alert(response.statusText);
+    }
+
+};
+
+const deleteComment = async () => {
+
+    const commentId = document.querySelector('#comment-delete').value
+
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        document.location.reload();
 
 
     } else {
@@ -61,3 +80,7 @@ document
 document
     .querySelector('#update-button')
     .addEventListener('click', updatePost);
+
+document
+    .querySelector('#comment-delete')
+    .addEventListener('click', deleteComment);
