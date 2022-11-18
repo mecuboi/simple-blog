@@ -66,13 +66,23 @@ router.get('/blogs/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
       include: [
-        { model: User },
+        { model: User,
+        attributes: ["first_name"] },
         { model: Comment }
       ],
 
     });
 
-    const blog = blogData.map((pets) => pets.get({ plain: true }));
+    const commentData = await Comment.findAll({
+      include: {model: User},
+      where: {
+        blog_id: req.params.id
+      }
+    })
+
+    const blog = blogData.get({ plain: true });
+    const comments = commentData.map( data => data.get({ plain: true }));
+
     const blogUserId = blog.user_id;
     var correctUser = false;
 
@@ -81,14 +91,18 @@ router.get('/blogs/:id', async (req, res) => {
       correctUser = true
     };
 
-    res.render('blog', {
+  // res.json(comments)
+
+    res.render('blogs', {
       blog,
+      comments,
       correctUser,
       logged_in: req.session.logged_in
     });
 
   } catch (err) {
     res.status(500).json(err);
+    console.log(err)
   }
 });
 
