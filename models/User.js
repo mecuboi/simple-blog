@@ -32,13 +32,6 @@ User.init(
         isEmail: true,
       },
     },
-    phone_number: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isNumeric: true,
-      },
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -47,18 +40,6 @@ User.init(
         isAlphanumeric: true,
       },
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    // saved_petAds_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: true,
-    //   references: {
-    //     model: 'pet_ads',
-    //     key: 'id',
-    //   },
-    // },
   },
   {
     hooks: {

@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection");
 
-class SavedPetsTag extends Model {}
+class Comment extends Model {}
 
-SavedPetsTag.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,19 +12,23 @@ SavedPetsTag.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    saved_pet_ads_id: {
+    body: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    user_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
-          model: 'pet_ads',
+          model: 'user',
           key: 'id',
         },
       },
-    user_tag_id: {
+    blog_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
-          model: 'user',
+          model: 'blog',
           key: 'id',
         },
       },
@@ -34,8 +38,8 @@ SavedPetsTag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "saved_pets_tag",
+    modelName: "comment",
   }
 );
 
-module.exports = SavedPetsTag;
+module.exports = Comment;
