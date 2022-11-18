@@ -4,28 +4,28 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    const blogData = await Blog.findAll({
+    const commentData = await Comment.findAll({
       include: [
         {
           model: User,
           attributes: ['first_name']
         },
         {
-          model: Comment
+          model: Blog
         }
       ],
     });
 
-    if (!blogData) {
-      res.status(404).json({ message: 'No blog found' });
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found' });
       return;
     }
 
-    const blog = blogData.map((data) =>
+    const comment = commentData.map((data) =>
       data.get({ plain: true })
     );
 
-    res.status(200).json(blog)
+    res.status(200).json(comment)
   } catch (err) {
     res.status(400).json(err);
   }
@@ -33,46 +33,46 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id{
+    const commentData = await Comment.findByPk(req.params.id{
       include: [
         {
           model: User,
           attributes: ['first_name']
         },
         {
-          model: Comment
+          model: Blog
         }
       ],
     });
 
-    if (!blogData) {
-      res.status(404).json({ message: 'No blog found with this id' });
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found with this id' });
       return;
     }
 
-    const blog = blogData.map((data) =>
+    const comment = commentData.map((data) =>
       data.get({ plain: true })
     );
 
-    res.status(200).json(blog)
+    res.status(200).json(comment)
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-//create Blog
+//create comment
 router.post('/', async (req, res) => {
   try {
-    const blogData = await Blog.create({
+    const commentData = await Comment.create({
       ...req.body,
       user_id: req.session.user_id
     });
 
-    const blog = blogData.map((data) =>
+    const comment = commentData.map((data) =>
       data.get({ plain: true })
     );
 
-    res.status(200).json(blog)
+    res.status(200).json(comment)
   } catch (err) {
     res.status(400).json(err);
   }
@@ -101,23 +101,23 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-//delete Blog
+//delete Comment
 //add withauth
 router.delete('/:id', async (req, res) => {
   try {
-    const blogData = await Blog.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,
       },
     });
 
-    if (!blogData) {
-      res.status(404).json({ message: 'No blog found with this id!' });
+    if (!commentData) {
+      res.status(404).json({ message: 'No comment found with this id!' });
       return;
     }
 
-    res.status(200).json(blogData);
+    res.status(200).json(commentData);
   } catch (err) {
     res.status(500).json(err);
   }
