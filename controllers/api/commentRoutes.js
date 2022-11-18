@@ -75,9 +75,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-//update Blog
+//update Comment for future implementation
 //add withAuth
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     const updateBlog = await Blog.update({
       ...req.body
@@ -98,9 +98,9 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-//delete Comment
+//delete Comment for future implementation
 //add withauth
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',withAuth, async (req, res) => {
   try {
     const commentData = await Comment.destroy({
       where: {

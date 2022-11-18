@@ -3,7 +3,7 @@ const { User, Blog, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //get routes
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const userData = await User.findAll({
           attributes: { exclude: ['password'] },
@@ -24,9 +24,9 @@ router.get('/', async (req, res) => {
   }
 });
 
-//add withauth
+//add withauth to avoid hacker
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const userDataById = await User.findByPk(req.params.id, {
       attributes: { exclude: ['password'] },
