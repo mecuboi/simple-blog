@@ -38,7 +38,7 @@ Link to deployed app:
 
 ## Questions
 
-Reach out to me using the links below: https://simply-blog-by-matt-j.herokuapp.com/
+Reach out to me using the links below: https://simply-blog-bymattj.herokuapp.com/
 
 GitHub: [@mecuboi](https://github.com/mecuboi)
 
