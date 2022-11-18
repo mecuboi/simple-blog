@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { PetAds, User } = require('../../models');
+const { User, Comment, Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
 router.get('/', async (req, res) => {
   try {
-    const newPetAds = await PetAds.findAll({
+    const commentData = await PetAds.findAll({
       include: { model: User }
     });
     

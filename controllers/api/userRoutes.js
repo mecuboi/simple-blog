@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, PetAds, SavedPetsTag } = require('../../models');
+const { User, Blog, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //get routes
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const userData = await User.findAll({
           attributes: { exclude: ['password'] },
           include: [
-            { model: PetAds, through: SavedPetsTag },
+            { model: Blog},
           ]
         });
 
@@ -24,12 +24,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', withAuth, async (req, res) => {
+//add withauth
+
+router.get('/:id', async (req, res) => {
   try {
     const userDataById = await User.findByPk(req.params.id, {
       attributes: { exclude: ['password'] },
       include: [
-        { model: PetAds, through: SavedPetsTag },
+        { model: Blog },
       ]
     })
 
@@ -40,18 +42,12 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
-//post routes
+//post routes for signup
 router.post('/', async (req, res) => {
   try {
 
     const postUser = await User.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      password: req.body.password,
-      address: req.body.address,
-      // saved_petAds_id: req.body.saved_petAds_id 
+      ...req.body
     });
     req.session.save(() => {
       req.session.user_id = postUser.id;
@@ -64,58 +60,6 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-//Update routes
-router.put('/:id', withAuth, async (req, res) => {
-  try {
-    const updateUser = await User.update({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      password: req.body.password,
-      address: req.body.address,
-      // saved_petAds_id: req.body.saved_petAds_id 
-    },
-      {
-        where: {
-          id: req.session.user_id 
-          // req.params.id,
-        },
-  });
-
-    if (!updateUser) {
-      return res.status(404).json({ message: 'No such user found!' });
-    } else {
-      //TODO test
-      res.status(200).json(updateUser)
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-})
-
-
-//Delete routes
-
-router.delete('/:id', async (req, res) => {
-  try {
-    const deleteUser = await User.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-
-    if (!deleteUser) {
-      return res.status(404).json({ message: 'No such user found!' });
-    } else {
-      //TODO test
-      res.status(200).json(deleteUser)
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-})
 
 router.post('/login', async (req, res) => {
   try {
