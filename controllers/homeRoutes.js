@@ -53,8 +53,19 @@ router.get('/dashboard',withAuth, async (req, res) => {
     // Serialize data so the template can read it
     const dashboard = dashboardData.map((data) => data.get({ plain: true }));
 
+    var activeUser
+
+    if (req.session.user_id) {
+      const userData = await User.findByPk(req.session.user_id)
+
+      const user = userData.get({ plain: true })
+
+      activeUser = user
+    }
+
     res.render('dashboard', {
       dashboard,
+      activeUser,
       logged_in: req.session.logged_in
     });
   } catch (err) {
